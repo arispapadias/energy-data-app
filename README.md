@@ -10,9 +10,10 @@ In order to use it, you will need:
 5) Pandas
 6) os
 
+First, input your sorting filters in params.py. The run main.py and open http://127.0.0.1:8000/docs and write your date input on description field. (Like image bellow)
 ![Screenshot](Screenshot/screenshot.png)
 
-First, input your sorting filters in params.py. The run main.py and open http://127.0.0.1:8000/docs and write your date input on description field. (Like image bellow)
+
 
 Alternate, open http://127.0.0.1:8000/get_energy_data/?target_date={date} and on date string, write your date.
 
