@@ -63,7 +63,7 @@ def find_headers(df, search_value):
     for value in search_value:
         # after find the  first header that contains 'search_value', breaks loop
         for column in df:
-            if value in df[column].values:
+            if df[column].isin([value]).any():
                 header_list[column] = value
                 break
 
