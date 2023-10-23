@@ -1,8 +1,10 @@
 import requests
 import pandas as pd
 import os
+# import matplotlib.pyplot as plt
 # add your filter values in params.py
 from params import inputs
+
 
 def download_xlsx_file(target_date):
     url = f'https://www.enexgroup.gr/documents/20126/200106/{target_date}_EL-DAM_Results_EN_v01.xlsx'
@@ -14,7 +16,6 @@ def download_xlsx_file(target_date):
         return f'data/{target_date}.xlsx'
     else:
         raise Exception(f"Failed to download file for {target_date}.")
-
 
 
 def fill_empty_cells(data_frame, empty_cells):
@@ -39,6 +40,7 @@ def fill_empty_cells(data_frame, empty_cells):
                     data_frame.at[index, column_name] = 'NaN'
                 
     return data_frame
+
 
 # Save the modified DataFrame to a new Excel file
 def save_new_file(df):
@@ -70,7 +72,6 @@ def find_headers(df, search_value):
     return header_list
 
 
-
 def parse_and_aggregate_data(file_path):
     df = open_file(file_path)
 
@@ -95,7 +96,6 @@ def parse_and_aggregate_data(file_path):
     else:
         return 'Please insert filter params in params.py and try again!'
         
-    
     # transform to this --> filtered_df = data_frame[(data_frame['SIDE_DESCR'] == "Sell") & (data_frame['CLASSIFICATION'] == "Imports")]
     mask = None
     for key, value in header_list.items():
@@ -114,6 +114,11 @@ def parse_and_aggregate_data(file_path):
     # Convert the result to a list of dictionaries
     result = aggregated_df.to_dict(orient="records")
 
+    # to create a bar chart
+    # plot_frame = pd.DataFrame(result)
+    # print(plot_frame)
+    # plot_frame.plot(x='SORT', y='TOTAL_TRADES', kind='bar')
+    # plt.show()
+
     # print(result)
     return result
-    # print(filtered_data)
